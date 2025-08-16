@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>[SUP] Cadastro de Justificativas</title>
-
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
     <link rel="icon" href="https://i.imgur.com/q7CcnFc.png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
@@ -396,9 +395,94 @@
         .radio-row .student-label { text-align: left; margin-bottom: 8px; width: auto;}
         .radio-row .options-container { width: 100%;}
       }
+
+
+       .loader-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.85));;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999; /* Mantém o loader acima de todo o conteúdo */
+        }
+
+        .load {
+            width: 100px;
+            height: 100px;
+            position: relative;
+        }
+
+        .load img {
+            position: absolute;
+            border-radius: 50%;
+            animation: spin 2s ease infinite;
+        }
+
+        .load img:nth-child(1) {
+            animation-delay: -1.5s;
+        }
+
+        .load img:nth-child(2) {
+            animation-delay: -1s;
+        }
+
+        .load img:nth-child(3) {
+            animation-delay: -0.5s;
+        }
+
+        .load img:nth-child(4) {
+            animation-delay: 0s;
+        }
+
+        @keyframes spin {
+            0%, 100% {
+                transform: translate(0);
+            }
+            25% {
+                transform: translate(160%);
+            }
+            50% {
+                transform: translate(160%, 160%);
+            }
+            75% {
+                transform: translate(0, 160%);
+            }
+        }
+
+        .fade-out {
+            animation: fadeOut 2s ease forwards;
+        }
+
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .icon {
+            width: 25px;
+            height: auto;
+        }
     </style>
 </head>
 <body>
+ <div class="loader-container" id="loader">
+    <div class="load">
+      <img src="https://www.habbo.com.br/habbo-imaging/badge/b09034s43131s50134s17113s1711594848847cad78ac939330154be639c58.gif" alt="Logo 1" />
+      <img src="https://www.habbo.com.br/habbo-imaging/badge/b09034s43131s50134s17113s1711594848847cad78ac939330154be639c58.gif" alt="Logo 2" />
+      <img src="https://www.habbo.com.br/habbo-imaging/badge/b09034s43131s50134s17113s1711594848847cad78ac939330154be639c58.gif" alt="Logo 3" />
+      <img src="https://www.habbo.com.br/habbo-imaging/badge/b09034s43131s50134s17113s1711594848847cad78ac939330154be639c58.gif" alt="Logo 4" />
+    </div>
+  </div>
+
+
     <div class="container">
         <div class="logo-container">
             <img src="https://i.imgur.com/q7CcnFc.png" alt="Logo Supervisores" class="logo" />
@@ -452,7 +536,8 @@ Qualquer dúvida, procure um membro do ministério e/ou liderança.</p>
         </div>
 
         <div class="credits">
-            <p><i class="fas fa-code"></i> Desenvolvimento: <strong>Pegas</strong></p>
+            <p><i class="fas fa-code"></i> Desenvolvimento: <strong>i,t </strong></p>
+            <i class="fas fa-sync-alt"></i> Baseado no <strong>Pegas</strong></span>
             <p><i class="far fa-copyright"></i> Todos os direitos reservados à <strong>Companhia dos Supervisores.</strong></p>
         </div>
     </div>
@@ -642,6 +727,21 @@ Qualquer dúvida, procure um membro do ministério e/ou liderança.</p>
             });
              $('.radio-row').hide();
         });
+    </script>
+        <script>
+function removeLoader() {
+    var loader = document.getElementById('loader');
+    loader.classList.add('fade-out');
+    loader.addEventListener('animationend', function () {
+        loader.style.display = 'none';
+        document.body.style.overflow = 'auto'; // Restaura o scroll
+    });
+}
+
+// Espera 5 segundos e depois chama a função para remover o loader
+window.onload = function () {
+    setTimeout(removeLoader, 600); // Agora o tempo é de 5 segundos
+};
     </script>
 </body>
 </html>
